@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <style>
+        webview {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <webview id="browser" src="http://baidu.com" style="left:0;"></webview>
+    <webview id="devtools" style="right:0;"></webview>
+    <script>
+        const browserView = document.getElementById('browser')
+        const devtoolsView = document.getElementById('devtools')
+        browserView.addEventListener('dom-ready', () => {
+            const browser = browserView.getWebContents()
+            browser.setDevToolsWebContents(devtoolsView.getWebContents())
+            browser.openDevTools()
+        });
+    </script>
+</body>
+
+</html>
